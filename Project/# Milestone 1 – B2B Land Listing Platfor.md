@@ -1,43 +1,48 @@
 # Milestone 1 – B2B Land Listing Platform
 
 ## Team Members
-- Batuhan Kamburoglu 1241EA
+- Batuhan Kamburoglu 12413a
 
 ---
 
 ## Project Description
-We will develop a **B2B Land Listing Platform** where institutional sellers (real estate agents, brokers, funds) can publish land listings and institutional buyers (developers, investors) can search, filter and send offers.
+We will implement a **B2B Land Listing Platform** designed for corporate sellers (brokers, agencies, funds) to publish land listings and for corporate buyers (developers, investors) to search, filter, and send offers.  
 
-Key features:
-- Listing creation and management (location, zoning, area, price, documents).
-- Advanced search and filtering based on multiple criteria.
-- Listing lifecycle (draft → review → publish → sold).
-- Offer/RFQ negotiations between buyers and sellers.
-- Notifications when offers or listing updates occur. 
+### Main Features
+- **Listing Management:** Sellers create listings with details (location, zoning, surface, utilities, documents, price, currency).  
+- **Advanced Search & Filtering:** Buyers can search by price range, surface, zoning, location, and infrastructure.  
+- **Listing Lifecycle:** Listings go through states: Draft → Pending Review → Published → Under Offer → Sold → Archived.  
+- **Offer / RFQ Flow:** Buyers place offers; sellers can accept, reject, or counter-offer. Negotiations are logged.  
+- **Notifications:** Buyers and sellers receive updates about listing status and offers.  
+- **Integrations:** Map/GIS overlays and external KYC/document verification services.  
 
-This project emphasizes scalability, sustainability, and integration with external services such as mapping and document verification.
+This project will focus on scalability, maintainability, and integration. It provides a clear structure to support the next milestones (UML, architecture comparison, microservices).
 
 ---
 
-## Design Patterns and Justifications
+## Design Patterns and Justification
 
 ### 1. State
-- **Use:** Manage the listing lifecycle (draft, review, published, sold).  
-- **Why:** Each state changes the allowed actions. State pattern avoids large if-else chains and makes it easy to add new states later.
+- **Problem:** A listing can be Draft, Pending Review, Published, Under Offer, Sold, or Archived. Actions depend on the state.  
+- **Solution:** Use the **State pattern** with specific classes (`DraftState`, `PublishedState`, etc.) to encapsulate behavior.  
+- **Advantage:** Avoids large if-else chains; easier to add new states compared to switch statements.
 
 ### 2. Strategy
-- **Use:** Different sorting/filtering strategies (by price, date, relevance) and commission calculations.  
-- **Why:** Encapsulates algorithms and makes them interchangeable. Easier to extend than hardcoded conditionals.
+- **Problem:** Search results may need different sorting (by price, recency, relevance) and pricing/commission rules can vary.  
+- **Solution:** Define a `Strategy` interface with multiple implementations (`PriceAsc`, `RecencySort`, `FlatCommission`, `TieredCommission`).  
+- **Advantage:** New algorithms can be added without modifying existing code; cleaner than hardcoded conditionals.
 
 ### 3. Observer
-- **Use:** Notify buyers when a tracked listing changes or when an offer is updated.  
-- **Why:** Decouples notification logic from core business logic. New observers (e.g., email, UI update) can be added easily.
+- **Problem:** Buyers and sellers must be notified when a listing or offer changes.  
+- **Solution:** Apply the **Observer pattern** where `Listing`/`Offer` are subjects and `NotificationService` is an observer.  
+- **Advantage:** Decouples core logic from notification logic; easier to add new observers (e.g., email, SMS) than with direct calls.
 
 ### 4. Builder
-- **Use:** Construct complex land listings with many optional and required fields (surface, zoning, utilities, documents).  
-- **Why:** Simplifies object creation compared to telescoping constructors or messy setters.
+- **Problem:** Creating a listing involves many optional and mandatory fields (location, zoning, documents, utilities, premium options).  
+- **Solution:** Use the **Builder pattern** to construct listings step by step, validating required fields.  
+- **Advantage:** Prevents telescoping constructors and messy setters; provides a clear, controlled object creation process.
 
 ---
 
 ## Submission Branch
-Branch name: `1-b2b-land-listing-and-design-patterns`  
+Branch name: `1-b2b-land-listing-and-design-patterns`
