@@ -1,7 +1,7 @@
 # Milestone 1 – B2B Land Listing Platform
 
 ## Team Members
-- Batuhan Kamburoglu 12413a
+- Batuhan Kamburoglu 1241EA
 
 ---
 
@@ -46,3 +46,4 @@ This project will focus on scalability, maintainability, and integration. It pro
 
 ## Submission Branch
 Branch name: `1-b2b-land-listing-and-design-patterns`
+
