@@ -1,0 +1,707 @@
+{
+	"info": {
+		"_postman_id": "b2b-land-listing-collection",
+		"name": "B2B Land Listing Platform - Microservices",
+		"description": "Complete Postman collection for testing all microservices endpoints",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Listing Service",
+			"item": [
+				{
+					"name": "Create Listing",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Prime Commercial Land - Downtown\",\n    \"location\": \"123 Business District, Metro City\",\n    \"surface\": 5000.0,\n    \"zoning\": \"Commercial\",\n    \"priceAmount\": 2500000.0,\n    \"currency\": \"USD\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/listings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"listings"
+							]
+						}
+					}
+				},
+				{
+					"name": "Get All Listings",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/listings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"listings"
+							]
+						}
+					}
+				},
+				{
+					"name": "Get Listing by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/listings/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"listings",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{listingId}}"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Get Listings by Zoning",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/listings/zoning/:zoning",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"listings",
+								"zoning",
+								":zoning"
+							],
+							"variable": [
+								{
+									"key": "zoning",
+									"value": "Commercial"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Submit Listing for Review",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/listings/:id/submit-for-review",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"listings",
+								":id",
+								"submit-for-review"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{listingId}}"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Publish Listing",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/listings/:id/publish",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"listings",
+								":id",
+								"publish"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{listingId}}"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Add Offer to Listing",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"buyerId\": \"buyer-123\",\n    \"amount\": 2400000.0,\n    \"currency\": \"USD\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/listings/:id/offers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"listings",
+								":id",
+								"offers"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{listingId}}"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Delete Listing",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/listings/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"listings",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{listingId}}"
+								}
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Search Service",
+			"item": [
+				{
+					"name": "Search All Listings",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/api/search",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"search"
+							]
+						}
+					}
+				},
+				{
+					"name": "Search with Sort (Price Asc)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/api/search?sortBy=price_asc",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"search"
+							],
+							"query": [
+								{
+									"key": "sortBy",
+									"value": "price_asc"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Search with Sort (Price Desc)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/api/search?sortBy=price_desc",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"search"
+							],
+							"query": [
+								{
+									"key": "sortBy",
+									"value": "price_desc"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Search with Sort (Recency)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/api/search?sortBy=recency",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"search"
+							],
+							"query": [
+								{
+									"key": "sortBy",
+									"value": "recency"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Search by Zoning",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/api/search?zoning=Commercial",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"search"
+							],
+							"query": [
+								{
+									"key": "zoning",
+									"value": "Commercial"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Search with Price Range",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/api/search?minPrice=1000000&maxPrice=3000000",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"search"
+							],
+							"query": [
+								{
+									"key": "minPrice",
+									"value": "1000000"
+								},
+								{
+									"key": "maxPrice",
+									"value": "3000000"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Search with Surface Range",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/api/search?minSurface=3000&maxSurface=8000",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"search"
+							],
+							"query": [
+								{
+									"key": "minSurface",
+									"value": "3000"
+								},
+								{
+									"key": "maxSurface",
+									"value": "8000"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Complex Search (All Filters)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/api/search?sortBy=price_asc&zoning=Commercial&minPrice=1000000&maxPrice=3000000&minSurface=3000&maxSurface=8000",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"search"
+							],
+							"query": [
+								{
+									"key": "sortBy",
+									"value": "price_asc"
+								},
+								{
+									"key": "zoning",
+									"value": "Commercial"
+								},
+								{
+									"key": "minPrice",
+									"value": "1000000"
+								},
+								{
+									"key": "maxPrice",
+									"value": "3000000"
+								},
+								{
+									"key": "minSurface",
+									"value": "3000"
+								},
+								{
+									"key": "maxSurface",
+									"value": "8000"
+								}
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Notification Service",
+			"item": [
+				{
+					"name": "Get All Notifications",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8083/api/notifications",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"api",
+								"notifications"
+							]
+						}
+					}
+				},
+				{
+					"name": "Get Notifications by Event",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8083/api/notifications?event=PUBLISHED",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"api",
+								"notifications"
+							],
+							"query": [
+								{
+									"key": "event",
+									"value": "PUBLISHED"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Get Notification by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8083/api/notifications/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"api",
+								"notifications",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{notificationId}}"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Create Notification (Manual)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"event\": \"TEST_EVENT\",\n    \"message\": \"This is a test notification\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8083/api/notifications",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"api",
+								"notifications"
+							]
+						}
+					}
+				},
+				{
+					"name": "Delete Notification",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8083/api/notifications/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"api",
+								"notifications",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{notificationId}}"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Delete All Notifications",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8083/api/notifications",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"api",
+								"notifications"
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Integration Tests",
+			"item": [
+				{
+					"name": "Full Workflow - Create, Submit, Publish, Search",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/api/search?sortBy=recency",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"search"
+							],
+							"query": [
+								{
+									"key": "sortBy",
+									"value": "recency"
+								}
+							]
+						},
+						"description": "This endpoint demonstrates the full workflow:\n1. Create listing via Listing Service\n2. Submit for review\n3. Publish\n4. Search via Search Service\n5. Check notifications"
+					}
+				},
+				{
+					"name": "Edge Case - Invalid Listing Creation",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"\",\n    \"location\": \"Test\",\n    \"surface\": -100,\n    \"zoning\": \"Commercial\",\n    \"priceAmount\": 0,\n    \"currency\": \"USD\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/listings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"listings"
+							]
+						},
+						"description": "Tests validation - should return 400 Bad Request"
+					}
+				},
+				{
+					"name": "Edge Case - Publish from Draft State",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/listings/:id/publish",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"listings",
+								":id",
+								"publish"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{listingId}}"
+								}
+							]
+						},
+						"description": "Tests state transition - should fail if listing is in DraftState"
+					}
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "listingId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "notificationId",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
+

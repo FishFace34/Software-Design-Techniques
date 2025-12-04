@@ -1,0 +1,47 @@
+### Create Listing
+POST http://localhost:8081/api/listings
+Content-Type: application/json
+
+{
+  "title": "Prime Commercial Land",
+  "location": "Istanbul, Turkey",
+  "surface": 5000.0,
+  "zoning": "Commercial",
+  "priceAmount": 2500000.0,
+  "currency": "USD"
+}
+
+### Get All Listings
+GET http://localhost:8081/api/listings
+
+### Get Listing by ID (ID'yi response'dan alın ve buraya yazın)
+# GET http://localhost:8081/api/listings/550e8400-e29b-41d4-a716-446655440000
+
+### Submit Listing for Review (ID'yi değiştirin)
+# POST http://localhost:8081/api/listings/550e8400-e29b-41d4-a716-446655440000/submit-for-review
+
+### Publish Listing (ID'yi değiştirin)
+# POST http://localhost:8081/api/listings/550e8400-e29b-41d4-a716-446655440000/publish
+
+### Search Listings - Price Ascending
+GET http://localhost:8082/api/search?sortBy=price_asc
+
+### Search Listings - Recency
+GET http://localhost:8082/api/search?sortBy=recency
+
+### Search by Zoning
+GET http://localhost:8082/api/search?zoning=Commercial
+
+### Get All Notifications
+GET http://localhost:8083/api/notifications
+
+### Health Check - Listing Service
+GET http://localhost:8081/actuator/health
+
+### Health Check - Search Service
+GET http://localhost:8082/actuator/health
+
+### Health Check - Notification Service
+GET http://localhost:8083/actuator/health
+
+

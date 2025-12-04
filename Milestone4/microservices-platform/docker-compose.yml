@@ -1,0 +1,43 @@
+services:
+  listing-service:
+    build:
+      context: .
+      dockerfile: listing-service/Dockerfile
+    container_name: listing-service
+    ports:
+      - "8081:8081"
+    environment:
+      - NOTIFICATION_SERVICE_URL=http://notification-service:8083
+    networks:
+      - b2b-network
+    depends_on:
+      - notification-service
+
+  search-service:
+    build:
+      context: .
+      dockerfile: search-service/Dockerfile
+    container_name: search-service
+    ports:
+      - "8082:8082"
+    environment:
+      - LISTING_SERVICE_URL=http://listing-service:8081
+    networks:
+      - b2b-network
+    depends_on:
+      - listing-service
+
+  notification-service:
+    build:
+      context: .
+      dockerfile: notification-service/Dockerfile
+    container_name: notification-service
+    ports:
+      - "8083:8083"
+    networks:
+      - b2b-network
+
+networks:
+  b2b-network:
+    driver: bridge
+
