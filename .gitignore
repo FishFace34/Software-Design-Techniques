@@ -42,4 +42,5 @@ Thumbs.db
 
 # Gereksiz klasörler
 gereksiz/
+**/gereksiz/
 
